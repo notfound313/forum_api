@@ -18,8 +18,8 @@ exports.up = (pgm) => {
             type: 'TEXT',         
             notNull: true        
         },
-        user_id: {
-            type: 'INTEGER',      
+        owner: {
+            type: 'VARCHAR(50)',      
             notNull: true         
         },        
         created_at: {
@@ -33,7 +33,7 @@ exports.up = (pgm) => {
         },
         is_deleted: {
             type: 'BOOLEAN',         
-            default: true,      
+            default: false,      
         },        
         
     })
