@@ -5,6 +5,7 @@ const AddedThread = require("../../../Domains/threads/entities/AddedThread");
 const ThreadRepositoryPostgres = require("../ThreadRepositoryPostgres");
 const pool = require("../../database/postgres/pool");
 const UsersTableTestHelper = require("../../../../tests/UsersTableTestHelper");
+const NotFoundError = require("../../../Commons/exceptions/NotFoundError");
 
 describe("ThreadRepositoryPostgres", () => {
   afterEach(async () => {
@@ -150,7 +151,7 @@ describe("ThreadRepositoryPostgres", () => {
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
 
       // Action & Assert
-      await expect(threadRepositoryPostgres.verifyThreadAvailability("user-123")).rejects.toThrowError(InvariantError);
+      await expect(threadRepositoryPostgres.verifyThreadAvailability("user-123")).rejects.toThrowError(NotFoundError);
     });
 
     it("should not throw InvariantError when username available", async () => {
