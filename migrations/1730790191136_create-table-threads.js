@@ -14,7 +14,7 @@ exports.up = (pgm) => {
             type: 'VARCHAR(255)', 
             notNull: true         
         },
-        content: {
+        body: {
             type: 'TEXT',         
             notNull: true        
         },
@@ -36,7 +36,15 @@ exports.up = (pgm) => {
             default: false,      
         },        
         
-    })
+    });
+    pgm.addConstraint('threads', 'fk_threads.owner_users.id', {
+            foreignKeys: {
+                columns: 'owner',
+                references: 'users(id)',
+                onDelete: 'CASCADE',
+            }
+        });
+    
 };
 
 exports.down = pgm => {
