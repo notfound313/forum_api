@@ -1,4 +1,3 @@
-
 /* istanbul ignore file */
 const pool = require('../src/Infrastructures/database/postgres/pool');
 
@@ -7,11 +6,11 @@ const CommentTableTestHelper = {
     id = 'comment-123',
     content = 'sebuah comment',
     threadId = 'thread-123',
-    owner = 'user-123',   
+    owner = 'user-123',
   }) {
     const query = {
       text: 'INSERT INTO comments VALUES($1, $2, $3, $4)',
-      values: [id, threadId,content, owner],
+      values: [id, threadId, content, owner],
     };
 
     await pool.query(query);

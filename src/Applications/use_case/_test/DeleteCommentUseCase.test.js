@@ -21,7 +21,7 @@ describe('DeleteCommentUseCase', () => {
     mockCommentRepository.deleteComment = jest.fn()
       .mockImplementation(() => Promise.resolve());
 
-    const deleteCommentUseCase = new DeleteCommentUseCase({      
+    const deleteCommentUseCase = new DeleteCommentUseCase({
       commentRepository: mockCommentRepository,
       threadRepository: mockThreadRepository,
     });
@@ -38,29 +38,28 @@ describe('DeleteCommentUseCase', () => {
       .toHaveBeenCalledWith(useCasePayload.commentId);
   });
   it('should throw error when payload not contain needed property', async () => {
-      // Arrange
-      const useCasePayload = {};
-      const deleteCommentUseCase = new DeleteCommentUseCase({});
-  
-      // Action & Assert
-      await expect(deleteCommentUseCase.execute(useCasePayload))
-        .rejects
-        .toThrowError('DELETE_COMMENT_USE_CASE.NOT_CONTAIN_NEEDED_PROPERTY');
-    });
-  
-    it('should throw error when payload not meet data type specification', async () => {
-      // Arrange
-      const useCasePayload = {
-        threadId: 123,
-        commentId: true,
-        owner: {},
-      };
-      const deleteCommentUseCase = new DeleteCommentUseCase({});
-  
-      // Action & Assert
-      await expect(deleteCommentUseCase.execute(useCasePayload))
-        .rejects
-        .toThrowError('DELETE_COMMENT_USE_CASE.NOT_MEET_DATA_TYPE_SPECIFICATION');
-    });
-  
+    // Arrange
+    const useCasePayload = {};
+    const deleteCommentUseCase = new DeleteCommentUseCase({});
+
+    // Action & Assert
+    await expect(deleteCommentUseCase.execute(useCasePayload))
+      .rejects
+      .toThrowError('DELETE_COMMENT_USE_CASE.NOT_CONTAIN_NEEDED_PROPERTY');
+  });
+
+  it('should throw error when payload not meet data type specification', async () => {
+    // Arrange
+    const useCasePayload = {
+      threadId: 123,
+      commentId: true,
+      owner: {},
+    };
+    const deleteCommentUseCase = new DeleteCommentUseCase({});
+
+    // Action & Assert
+    await expect(deleteCommentUseCase.execute(useCasePayload))
+      .rejects
+      .toThrowError('DELETE_COMMENT_USE_CASE.NOT_MEET_DATA_TYPE_SPECIFICATION');
+  });
 });

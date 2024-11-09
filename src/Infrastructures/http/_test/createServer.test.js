@@ -16,20 +16,18 @@ describe('HTTP server', () => {
   });
 
   it('should handle JWT authentication correctly', async () => {
-      // Arrange
-      const server = await createServer({});
-  
-      // Action
-      const response = await server.inject({
-        method: 'POST',
-        url: '/threads',
-      });
-  
-      // Assert
-      expect(response.statusCode).toEqual(401);
-     
+    // Arrange
+    const server = await createServer({});
+
+    // Action
+    const response = await server.inject({
+      method: 'POST',
+      url: '/threads',
     });
-  
+
+    // Assert
+    expect(response.statusCode).toEqual(401);
+  });
 
   it('should handle server error correctly', async () => {
     // Arrange

@@ -1,5 +1,5 @@
 class DeleteCommentUseCase {
-  constructor({commentRepository, threadRepository}) {
+  constructor({ commentRepository, threadRepository }) {
     this._commentRepository = commentRepository;
     this._threadRepository = threadRepository;
   }
@@ -11,17 +11,17 @@ class DeleteCommentUseCase {
     await this._commentRepository.verifyCommentOwner(commentId, owner);
     await this._commentRepository.deleteComment(commentId);
   }
+
   _validatePayload(payload) {
-      const { threadId, commentId, owner } = payload;
-      if (!threadId || !commentId || !owner) {
-        throw new Error('DELETE_COMMENT_USE_CASE.NOT_CONTAIN_NEEDED_PROPERTY');
-      }
-  
-      if (typeof threadId !== 'string' || typeof commentId !== 'string' || typeof owner !== 'string') {
-        throw new Error('DELETE_COMMENT_USE_CASE.NOT_MEET_DATA_TYPE_SPECIFICATION');
-      }
+    const { threadId, commentId, owner } = payload;
+    if (!threadId || !commentId || !owner) {
+      throw new Error('DELETE_COMMENT_USE_CASE.NOT_CONTAIN_NEEDED_PROPERTY');
     }
-  
+
+    if (typeof threadId !== 'string' || typeof commentId !== 'string' || typeof owner !== 'string') {
+      throw new Error('DELETE_COMMENT_USE_CASE.NOT_MEET_DATA_TYPE_SPECIFICATION');
+    }
+  }
 }
 
 module.exports = DeleteCommentUseCase;

@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 class AddComment {
   constructor(payload) {
     this._verifyPayload(payload);
@@ -20,4 +21,4 @@ class AddComment {
   }
 }
 
-module.exports = AddComment
+module.exports = AddComment;
