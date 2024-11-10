@@ -154,16 +154,40 @@ describe('CommentRepositoryPostgres', () => {
   });
 
   describe('getCommentsByThreadId function', () => {
-    it('should throw NotFoundError when id of thread not found', async () => {
+    it('should return empty array when id of thread not found', async () => {
       // Arrange
       const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
 
       // Action & Assert
-      await expect(commentRepositoryPostgres.getCommentsByThreadId('thread-123'))
-        .rejects
-        .toThrowError(NotFoundError);
-    });
+      const comment = await commentRepositoryPostgres.getCommentsByThreadId('kl');
+      expect(comment).toEqual([]);
   });
+  it('should return thread  by id correctly', async () => {
+    // Arrange
+    await UsersTableTestHelper.addUser({ id: 'user-123' });
+    await ThreadTableTestHelper.addThread({ id: 'thread-123' });
+    await CommentsTableTestHelper.addComment({ id: 'comment-123' });
+    
+
+    const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+
+    // Action
+    const thread = await commentRepositoryPostgres.getCommentsByThreadId('thread-123');
+
+    // Assert
+    expect(thread).toStrictEqual(
+      [
+        {
+          id: 'comment-123',
+          username: 'dicoding',
+          date: expect.any(Date),
+          content: 'sebuah comment',
+          is_deleted: false,
+        },
+      ],
+    );
+  });
+});
 
   describe('verifyCommentOwner function', () => {
     it('should throw NotfoundError when id and owner not found', async () => {
