@@ -191,7 +191,7 @@ describe('ReplyRepositoryPostgres', () => {
     });
   });
 
-  describe('getRepliesByThreadId function', () => {   
+  describe('getRepliesByThreadId function', () => {
     it('should return thread  by id correctly', async () => {
       // Arrange
       await UsersTableTestHelper.addUser({ id: 'user-123' });

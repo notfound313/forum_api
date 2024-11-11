@@ -22,7 +22,7 @@ describe('DetailThreadUseCase', () => {
           username: 'dicoding',
           date: '2021-08-08T07:22:33.555Z',
           content: 'sebuah comment',
-          replies:[],
+          replies: [],
         },
       ],
     };
@@ -36,7 +36,7 @@ describe('DetailThreadUseCase', () => {
     mockCommentRepository.getCommentsByThreadId = jest.fn()
       .mockImplementation(() => Promise.resolve(expectedThread.comments));
     mockReplyRepository.getRepliesByThreadId = jest.fn()
-    .mockImplementation(()=> Promise.resolve(expectedThread.comments[0].replies));
+      .mockImplementation(() => Promise.resolve(expectedThread.comments[0].replies));
 
     const detailThreadUseCase = new DetailThreadUseCase({
       threadRepository: mockThreadRepository,
@@ -77,8 +77,8 @@ describe('DetailThreadUseCase', () => {
               date: '2021-08-08T07:22:33.555Z',
               content: '**balasan telah dihapus**',
 
-            }
-          ]
+            },
+          ],
         },
       ],
     };
@@ -96,18 +96,18 @@ describe('DetailThreadUseCase', () => {
 
     };
 
-    const expectedReplies =  {
-      replies : [        
-          {
-            id: 'reply-123',
-            comment_id:'comment-123',
-            username: 'dicoding',
-            date: '2021-08-08T07:22:33.555Z',
-            content: 'apakabar reply',
-            is_deleted: true,
-          },
-        ],      
-    }
+    const expectedReplies = {
+      replies: [
+        {
+          id: 'reply-123',
+          comment_id: 'comment-123',
+          username: 'dicoding',
+          date: '2021-08-08T07:22:33.555Z',
+          content: 'apakabar reply',
+          is_deleted: true,
+        },
+      ],
+    };
 
     const mockThreadRepository = new ThreadRepository();
     const mockCommentRepository = new CommentRepository();

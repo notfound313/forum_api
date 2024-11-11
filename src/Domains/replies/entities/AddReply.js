@@ -14,12 +14,12 @@ class AddReply {
     content, threadId, commentId, owner,
   }) {
     if (!content || !threadId || !commentId || !owner) {
-      throw new Error('ADD_REPLAY.NOT_CONTAIN_NEEDED_PROPERTY');
+      throw new Error('ADD_REPLY.NOT_CONTAIN_NEEDED_PROPERTY');
     }
     if (typeof content !== 'string' || typeof threadId !== 'string'
             || typeof owner !== 'string' || typeof commentId !== 'string'
     ) {
-      throw new Error('ADD_REPLAY.NOT_MEET_DATA_TYPE_SPECIFICATION');
+      throw new Error('ADD_REPLY.NOT_MEET_DATA_TYPE_SPECIFICATION');
     }
   }
 }

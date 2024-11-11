@@ -8,7 +8,7 @@ describe('a AddReply entities ', () => {
     };
     // assert and action
 
-    expect(() => new AddReply(payload)).toThrowError('ADD_REPLAY.NOT_CONTAIN_NEEDED_PROPERTY');
+    expect(() => new AddReply(payload)).toThrowError('ADD_REPLY.NOT_CONTAIN_NEEDED_PROPERTY');
   });
   it('should throw error when payload did not meet data type specification', () => {
     // Arrange
@@ -20,7 +20,7 @@ describe('a AddReply entities ', () => {
     };
 
     // Action and Assert
-    expect(() => new AddReply(payload)).toThrowError('ADD_REPLAY.NOT_MEET_DATA_TYPE_SPECIFICATION');
+    expect(() => new AddReply(payload)).toThrowError('ADD_REPLY.NOT_MEET_DATA_TYPE_SPECIFICATION');
   });
 
   it('should create object AddReply correctly', () => {

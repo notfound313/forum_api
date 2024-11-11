@@ -32,7 +32,7 @@ class ReplyRepositoryPostgres extends ReplyRepository {
     };
     const result = await this._pool.query(query);
     if (!result.rowCount) {
-      throw new NotFoundError('reply tidak ditemukan');
+      throw new NotFoundError('balasan tidak ditemukan');
     }
 
     return result.rows[0];
@@ -44,7 +44,8 @@ class ReplyRepositoryPostgres extends ReplyRepository {
             r.content, r.created_at AS date , r.is_deleted
             FROM replies r
             INNER JOIN users  u ON r.owner = u.id
-            WHERE r.thread_id = $1`,
+            WHERE r.thread_id = $1
+            ORDER BY date ASC`,
       values: [threadId],
     };
 
@@ -61,7 +62,7 @@ class ReplyRepositoryPostgres extends ReplyRepository {
 
     const result = await this._pool.query(query);
     if (!result.rowCount) {
-      throw new NotFoundError('reply tidak ditemukan');
+      throw new NotFoundError('balasan tidak ditemukan');
     }
 
     return result.rows[0];
@@ -75,7 +76,7 @@ class ReplyRepositoryPostgres extends ReplyRepository {
 
     const result = await this._pool.query(query);
     if (!result.rowCount) {
-      throw new NotFoundError('reply tidak ditemukan');
+      throw new NotFoundError('balasan tidak ditemukan');
     }
   }
 
@@ -87,7 +88,7 @@ class ReplyRepositoryPostgres extends ReplyRepository {
 
     const result = await this._pool.query(query);
     if (!result.rowCount) {
-      throw new NotFoundError('reply tidak ditemukan');
+      throw new NotFoundError('balasan tidak ditemukan');
     }
 
     if (result.rows[0].owner !== owner) {

@@ -161,33 +161,32 @@ describe('CommentRepositoryPostgres', () => {
       // Action & Assert
       const comment = await commentRepositoryPostgres.getCommentsByThreadId('kl');
       expect(comment).toEqual([]);
-  });
-  it('should return thread  by id correctly', async () => {
+    });
+    it('should return thread  by id correctly', async () => {
     // Arrange
-    await UsersTableTestHelper.addUser({ id: 'user-123' });
-    await ThreadTableTestHelper.addThread({ id: 'thread-123' });
-    await CommentsTableTestHelper.addComment({ id: 'comment-123' });
-    
+      await UsersTableTestHelper.addUser({ id: 'user-123' });
+      await ThreadTableTestHelper.addThread({ id: 'thread-123' });
+      await CommentsTableTestHelper.addComment({ id: 'comment-123' });
 
-    const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
+      const commentRepositoryPostgres = new CommentRepositoryPostgres(pool, {});
 
-    // Action
-    const thread = await commentRepositoryPostgres.getCommentsByThreadId('thread-123');
+      // Action
+      const thread = await commentRepositoryPostgres.getCommentsByThreadId('thread-123');
 
-    // Assert
-    expect(thread).toStrictEqual(
-      [
-        {
-          id: 'comment-123',
-          username: 'dicoding',
-          date: expect.any(Date),
-          content: 'sebuah comment',
-          is_deleted: false,
-        },
-      ],
-    );
+      // Assert
+      expect(thread).toStrictEqual(
+        [
+          {
+            id: 'comment-123',
+            username: 'dicoding',
+            date: expect.any(Date),
+            content: 'sebuah comment',
+            is_deleted: false,
+          },
+        ],
+      );
+    });
   });
-});
 
   describe('verifyCommentOwner function', () => {
     it('should throw NotfoundError when id and owner not found', async () => {
