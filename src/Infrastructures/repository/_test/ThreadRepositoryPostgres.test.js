@@ -74,14 +74,6 @@ describe('ThreadRepositoryPostgres', () => {
   });
 
   describe('getThreadById function', () => {
-    it('should throw error NottFoundError when thread not found', async () => {
-      // arrange
-      const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
-
-      // action and assert
-      return expect(threadRepositoryPostgres.getThreadById('thread-123')).rejects.toThrowError(NotFoundError);
-    });
-
     it('should return thread correctly when id is exist', async () => {
       // arrange
       await UsersTableTestHelper.addUser({
@@ -113,14 +105,6 @@ describe('ThreadRepositoryPostgres', () => {
   });
 
   describe('deleteThread function', () => {
-    it('should throw error invariant when thread not found', async () => {
-      // arrange
-      const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
-
-      // action and assert
-      return expect(threadRepositoryPostgres.deleteThread('thread-123')).rejects.toThrowError(InvariantError);
-    });
-
     it('should return id when thread succes to deleted', async () => {
       // arrange
       await UsersTableTestHelper.addUser({

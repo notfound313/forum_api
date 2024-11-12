@@ -48,21 +48,11 @@ describe('ReplyRepositoryPostgres', () => {
         content: addReply.content,
         owner: addReply.owner,
       }));
-      expect(reply).toBeDefined();
+      expect(reply).toHaveLength(1);
     });
   });
 
   describe('getReplyById function', () => {
-    it('should throw NotFoundError when reply not found', async () => {
-      // Arrange
-      const replyRepositoryPostgres = new ReplyRepositoryPostgres(pool, {});
-
-      // Action & Assert
-      await expect(replyRepositoryPostgres.getReplyById('reply-123'))
-        .rejects
-        .toThrowError(NotFoundError);
-    });
-
     it('should return reply by id correctly', async () => {
       // Arrange
       await UsersTableTestHelper.addUser({ id: 'user-123' });
@@ -107,16 +97,6 @@ describe('ReplyRepositoryPostgres', () => {
       expect(reply.id).toEqual('reply-123');
       expect(reply.is_deleted).toEqual(true);
     });
-
-    it('should throw NotFoundError when id reply  not found', async () => {
-      // Arrange
-      const replyRepositoryPostgres = new ReplyRepositoryPostgres(pool, {});
-
-      // Action & Assert
-      await expect(replyRepositoryPostgres.deleteReply('reply-123'))
-        .rejects
-        .toThrowError(NotFoundError);
-    });
   });
 
   describe('verifyReplyAvailability function', () => {
@@ -145,16 +125,6 @@ describe('ReplyRepositoryPostgres', () => {
     });
   });
   describe('verifyReplyOwner function', () => {
-    it('should throw NotfoundError when reply id does not exist', async () => {
-      // Arrange
-      const replyRepositoryPostgres = new ReplyRepositoryPostgres(pool, {});
-
-      // Action & Assert
-      await expect(replyRepositoryPostgres.verifyReplyOwner('', ''))
-        .rejects
-        .toThrowError(NotFoundError);
-    });
-
     it('should throw AuthorizationError when id and owner is exist', async () => {
       // Arrange
       await UsersTableTestHelper.addUser({ id: 'user-123' });
@@ -169,7 +139,7 @@ describe('ReplyRepositoryPostgres', () => {
         .toThrowError(AuthorizationError);
     });
 
-    it('should not AuthorizationError and NotFoundError when reply id  and owner exist', async () => {
+    it('should not AuthorizationError  when reply id  and owner exist', async () => {
       // Arrange
       await UsersTableTestHelper.addUser({ id: 'user-123' });
       await ThreadTableTestHelper.addThread({ id: 'thread-123' });
@@ -179,10 +149,6 @@ describe('ReplyRepositoryPostgres', () => {
       const replyRepositoryPostgres = new ReplyRepositoryPostgres(pool, {});
 
       // Action & Assert
-      await expect(replyRepositoryPostgres.verifyReplyOwner('reply-123', 'user-123'))
-        .resolves
-        .not
-        .toThrowError(NotFoundError);
 
       await expect(replyRepositoryPostgres.verifyReplyOwner('reply-123', 'user-123'))
         .resolves
@@ -192,7 +158,7 @@ describe('ReplyRepositoryPostgres', () => {
   });
 
   describe('getRepliesByThreadId function', () => {
-    it('should return thread  by id correctly', async () => {
+    it('should return reply  by id correctly', async () => {
       // Arrange
       await UsersTableTestHelper.addUser({ id: 'user-123' });
       await ThreadTableTestHelper.addThread({ id: 'thread-123' });
