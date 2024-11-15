@@ -94,8 +94,10 @@ describe('ReplyRepositoryPostgres', () => {
       const reply = await replyRepositoryPostgres.deleteReply('reply-123');
 
       // Assert
+      const replyDeleted = await RepliesTableTestHelper.findReplyById('reply-123');
       expect(reply.id).toEqual('reply-123');
       expect(reply.is_deleted).toEqual(true);
+      expect(replyDeleted[0].is_deleted).toEqual(true);
     });
   });
 

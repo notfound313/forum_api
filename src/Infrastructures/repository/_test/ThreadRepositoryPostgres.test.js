@@ -39,8 +39,8 @@ describe('ThreadRepositoryPostgres', () => {
       await threadRepositoryPostgres.addThread(addThread);
 
       // assert
-      const users = await ThreadTableHelpTest.findThreadById('thread-123');
-      expect(users).toHaveLength(1);
+      const thread = await ThreadTableHelpTest.findThreadById('thread-123');
+      expect(thread).toHaveLength(1);
     });
 
     it('should return Thread correctly', async () => {
@@ -130,7 +130,7 @@ describe('ThreadRepositoryPostgres', () => {
   });
 
   describe('verifyThreadAvailability fucntion', () => {
-    it('should throw error invariant when thread not found', async () => {
+    it('should throw error NotFoundError when thread not found', async () => {
       // arrange
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
 
@@ -138,7 +138,7 @@ describe('ThreadRepositoryPostgres', () => {
       await expect(threadRepositoryPostgres.verifyThreadAvailability('user-123')).rejects.toThrowError(NotFoundError);
     });
 
-    it('should not throw InvariantError when username available', async () => {
+    it('should not throw NotFoundError when thread available', async () => {
       // Arrange
       await UsersTableTestHelper.addUser({
         id: 'user-123',
@@ -155,7 +155,7 @@ describe('ThreadRepositoryPostgres', () => {
       const threadRepositoryPostgres = new ThreadRepositoryPostgres(pool, {});
 
       // Action & Assert
-      await expect(threadRepositoryPostgres.verifyThreadAvailability('thread-123')).resolves.not.toThrowError(InvariantError);
+      await expect(threadRepositoryPostgres.verifyThreadAvailability('thread-123')).resolves.not.toThrowError(NotFoundError);
     });
   });
 });

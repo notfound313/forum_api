@@ -7,6 +7,7 @@ const pool = require('../../database/postgres/pool');
 const CommentRepositoryPostgres = require('../CommentRepositoryPostgres');
 const NotFoundError = require('../../../Commons/exceptions/NotFoundError');
 const AuthorizationError = require('../../../Commons/exceptions/AuthorizationError');
+const CommentTableTestHelper = require('../../../../tests/CommentsTableTestHelper');
 
 describe('CommentRepositoryPostgres', () => {
   afterEach(async () => {
@@ -128,8 +129,10 @@ describe('CommentRepositoryPostgres', () => {
       const comment = await commentRepositoryPostgres.deleteComment('comment-123');
 
       // Assert
+      const comentDeleted = await CommentTableTestHelper.findCommentById('comment-123');
       expect(comment.id).toEqual('comment-123');
       expect(comment.is_deleted).toEqual(true);
+      expect(comentDeleted[0].is_deleted).toEqual(true);
     });
   });
 

@@ -22,9 +22,9 @@ class DetailThreadUseCase {
           .filter((reply) => reply.comment_id === comment.id)
           .map((reply) => ({
             id: reply.id,
+            username: reply.username,
             content: reply.is_deleted ? '**balasan telah dihapus**' : reply.content,
             date: reply.date,
-            username: reply.username,
           })),
       })),
 

@@ -22,7 +22,14 @@ describe('DetailThreadUseCase', () => {
           username: 'dicoding',
           date: '2021-08-08T07:22:33.555Z',
           content: 'sebuah comment',
-          replies: [],
+          replies: [
+            {
+              id: 'reply-123',
+              username: 'dicoding',
+              date: '2021-08-08T07:22:33.555Z',
+              content: 'apakabar reply',
+            },
+          ],
         },
       ],
     };
@@ -48,10 +55,22 @@ describe('DetailThreadUseCase', () => {
           username: 'dicoding',
           date: '2021-08-08T07:22:33.555Z',
           content: 'sebuah comment',
+          is_deleted: false,
         },
       ]));
     mockReplyRepository.getRepliesByThreadId = jest.fn()
-      .mockImplementation(() => Promise.resolve([]));
+      .mockImplementation(() => Promise.resolve(
+        [
+          {
+            id: 'reply-123',
+            comment_id: 'comment-123',
+            username: 'dicoding',
+            date: '2021-08-08T07:22:33.555Z',
+            content: 'apakabar reply',
+            is_deleted: false,
+          },
+        ],
+      ));
 
     const detailThreadUseCase = new DetailThreadUseCase({
       threadRepository: mockThreadRepository,
@@ -92,7 +111,6 @@ describe('DetailThreadUseCase', () => {
               username: 'dicoding',
               date: '2021-08-08T07:22:33.555Z',
               content: '**balasan telah dihapus**',
-
             },
           ],
         },
