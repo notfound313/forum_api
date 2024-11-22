@@ -82,9 +82,14 @@ describe('DetailThreadUseCase', () => {
     const detailThread = await detailThreadUseCase.execute(useCasePayload);
 
     // Assert
-    expect(mockThreadRepository.getThreadById).toBeCalledWith(useCasePayload.threadId);
-    expect(mockCommentRepository.getCommentsByThreadId).toBeCalledWith(useCasePayload.threadId);
-    expect(mockReplyRepository.getRepliesByThreadId).toBeCalledWith(useCasePayload.threadId);
+    expect(mockThreadRepository.verifyThreadAvailability)
+      .toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockThreadRepository.getThreadById)
+      .toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockCommentRepository.getCommentsByThreadId)
+      .toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockReplyRepository.getRepliesByThreadId)
+      .toHaveBeenCalledWith(useCasePayload.threadId);
     expect(detailThread).toStrictEqual(expectedThread);
   });
   it('should orchestrating the detail thread action correctly when comment and replies deleted', async () => {
@@ -169,9 +174,14 @@ describe('DetailThreadUseCase', () => {
     const detailThread = await detailThreadUseCase.execute(useCasePayload);
 
     // Assert
-    expect(mockThreadRepository.getThreadById).toBeCalledWith(useCasePayload.threadId);
-    expect(mockCommentRepository.getCommentsByThreadId).toBeCalledWith(useCasePayload.threadId);
-    expect(mockReplyRepository.getRepliesByThreadId).toBeCalledWith(useCasePayload.threadId);
+    expect(mockThreadRepository.verifyThreadAvailability)
+      .toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockThreadRepository.getThreadById)
+      .toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockCommentRepository.getCommentsByThreadId)
+      .toHaveBeenCalledWith(useCasePayload.threadId);
+    expect(mockReplyRepository.getRepliesByThreadId)
+      .toHaveBeenCalledWith(useCasePayload.threadId);
     expect(detailThread).toStrictEqual(expectedThread);
   });
 });
