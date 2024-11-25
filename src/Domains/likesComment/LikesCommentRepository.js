@@ -1,9 +1,9 @@
 class LikesCommentRepository {
-  async addLikeComment(threadId, commentId, userId) {
+  async addLikeComment(threadId, commentId, owner) {
     throw new Error('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
-  async unlikeComment(likesId, userId) {
+  async unlikeComment(commentId, owner) {
     throw new Error('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
@@ -11,19 +11,15 @@ class LikesCommentRepository {
     throw new Error('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
-  async getLikesCommentById(commentId) {
+  async getLikesCommentStatus(commentId, owner) {
     throw new Error('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
-  async verifyLikesCommentAvailability(likesId) {
+  async verifyLikedCommentAvaibility(commentId, owner) {
     throw new Error('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
-  async verifyLikedComment(userId, commentId) {
-    throw new Error('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
-  }
-
-  async likeComment(likesId) {
+  async likeComment(commentId, owner) {
     throw new Error('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 }

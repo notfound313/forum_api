@@ -17,7 +17,7 @@ describe('a LikesComment entities ', () => {
     const payload = {
       threadId: {},
       commentId: true,
-      userId: 'user-123',
+      owner: 'user-123',
     };
 
     // Action & Assert
@@ -28,7 +28,7 @@ describe('a LikesComment entities ', () => {
     const payload = {
       threadId: 'thread-123',
       commentId: 'comment-123',
-      userId: 'user-123',
+      owner: 'user-123',
     };
 
     // Action
@@ -38,6 +38,6 @@ describe('a LikesComment entities ', () => {
     expect(likeComment).toBeInstanceOf(LikesComment);
     expect(likeComment.threadId).toEqual(payload.threadId);
     expect(likeComment.commentId).toEqual(payload.commentId);
-    expect(likeComment.userId).toEqual(payload.userId);
+    expect(likeComment.owner).toEqual(payload.owner);
   });
 });
