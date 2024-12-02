@@ -7,7 +7,7 @@ class LikesCommentRepository {
     throw new Error('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 
-  async getLikesCommentByThreadId(threadId) {
+  async getLikeCountByCommentId(commentId) {
     throw new Error('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   }
 

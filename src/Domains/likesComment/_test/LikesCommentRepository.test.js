@@ -9,7 +9,7 @@ describe('LikesCommentRepository interface', () => {
     await expect(likesCommentRepository.addLikeComment({})).rejects.toThrowError('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
     await expect(likesCommentRepository.verifyLikedCommentAvaibility('')).rejects.toThrowError('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
     await expect(likesCommentRepository.unlikeComment('')).rejects.toThrowError('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
-    await expect(likesCommentRepository.getLikesCommentByThreadId('')).rejects.toThrowError('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
+    await expect(likesCommentRepository.getLikeCountByCommentId('')).rejects.toThrowError('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
     await expect(likesCommentRepository.getLikesCommentStatus('')).rejects.toThrowError('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
     await expect(likesCommentRepository.likeComment('')).rejects.toThrowError('LIKES_COMMENT_REPOSITORY.METHOD_NOT_IMPLEMENTED');
   });
