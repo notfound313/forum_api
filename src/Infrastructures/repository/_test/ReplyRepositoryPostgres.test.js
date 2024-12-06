@@ -11,10 +11,10 @@ const AuthorizationError = require('../../../Commons/exceptions/AuthorizationErr
 
 describe('ReplyRepositoryPostgres', () => {
   afterEach(async () => {
+    await RepliesTableTestHelper.cleanTable();
     await CommentsTableTestHelper.cleanTable();
     await ThreadTableTestHelper.cleanTable();
     await UsersTableTestHelper.cleanTable();
-    await RepliesTableTestHelper.cleanTable();
   });
 
   afterAll(async () => {
