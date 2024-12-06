@@ -16,7 +16,6 @@ describe('/thread/{threadId}/comment/{commentId}/likes endpoint', () => {
     await CommentsTableTestHelper.cleanTable();
     await ThreadsTableTestHelper.cleanTable();
     await UsersTableTestHelper.cleanTable();
-    
   });
 
   describe('when PUT /thread/{threadId}/comments/{commentId}/likes', () => {

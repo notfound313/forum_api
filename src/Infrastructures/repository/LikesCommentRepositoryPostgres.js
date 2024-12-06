@@ -39,7 +39,7 @@ class LikesCommentRepositoryPostgres extends LikesCommentRepository {
 
   async getLikeCountByCommentId(commentId) {
     const query = {
-      text: 'SELECT COUNT(*) FROM comment_likes WHERE comment_id = $1',
+      text: 'SELECT COUNT(*) FROM comment_likes WHERE comment_id = $1 AND is_deleted = false',
       values: [commentId],
     };
 

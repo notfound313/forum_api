@@ -15,7 +15,6 @@ describe('ReplyRepositoryPostgres', () => {
     await CommentsTableTestHelper.cleanTable();
     await ThreadTableTestHelper.cleanTable();
     await UsersTableTestHelper.cleanTable();
-    
   });
 
   afterAll(async () => {
